@@ -36,6 +36,12 @@ export async function runAssetCreationWorkflow(
     isGlobal: false
   });
 
+  await bridge.sendCommand({
+    command: "layer.rename",
+    layerIndex: 0,
+    name: spec.layers[0].name
+  });
+
   for (let i = 1; i < spec.layers.length; i++) {
     const l = spec.layers[i];
     await bridge.sendCommand({
@@ -46,39 +52,18 @@ export async function runAssetCreationWorkflow(
     });
   }
 
-  const clearPixels: PixelTuple[] = [];
-  for (let y = 0; y < spec.height; y++) {
-    for (let x = 0; x < spec.width; x++) {
-      clearPixels.push([x, y, 0, 0, 0, 0]);
-    }
-  }
-
   for (let i = 0; i < spec.layers.length; i++) {
     await bridge.sendCommand({
-      command: "layer.select",
+      command: "cel.clear",
+      frameIndex: 0,
       layerIndex: i
-    });
-    await bridge.sendCommand({
-      command: "draw.pixels",
-      pixels: clearPixels,
-      mode: "instant"
     });
   }
 
   onProgress?.("drawing_base", 2, 10, "Drawing base artwork stages...");
   const artPlan = planPixelArt(spec, artDirection);
 
-  const lastDrawnPixelsByLayer = new Map<number, Set<string>>();
-
   for (const batch of artPlan.stages) {
-    let layerSet = lastDrawnPixelsByLayer.get(batch.layerIndex);
-    if (!layerSet) {
-      layerSet = new Set<string>();
-      lastDrawnPixelsByLayer.set(batch.layerIndex, layerSet);
-    }
-    for (const px of batch.pixels) {
-      layerSet.add(`${px[0]},${px[1]}`);
-    }
 
     await bridge.sendCommand({
       command: "layer.select",
@@ -130,6 +115,12 @@ export async function runAssetCreationWorkflow(
 
         for (const update of kf.layerUpdates) {
           await bridge.sendCommand({
+            command: "cel.clear",
+            frameIndex: kf.frameIndex,
+            layerIndex: update.layerIndex
+          });
+
+          await bridge.sendCommand({
             command: "layer.select",
             layerIndex: update.layerIndex
           });
@@ -144,28 +135,9 @@ export async function runAssetCreationWorkflow(
             message: `Keyframe ${kf.frameIndex} (${kf.poseType})`
           });
 
-          const currentKeys = new Set<string>();
-          for (const px of update.pixels) {
-            currentKeys.add(`${px[0]},${px[1]}`);
-          }
-
-          const prevKeys = lastDrawnPixelsByLayer.get(update.layerIndex);
-          const erasePixels: Array<[number, number, number, number, number, number]> = [];
-          if (prevKeys) {
-            for (const key of prevKeys) {
-              if (!currentKeys.has(key)) {
-                const parts = key.split(",");
-                erasePixels.push([parseInt(parts[0], 10), parseInt(parts[1], 10), 0, 0, 0, 0]);
-              }
-            }
-          }
-          lastDrawnPixelsByLayer.set(update.layerIndex, currentKeys);
-
-          const combinedPixels = [...erasePixels, ...update.pixels];
-
           await bridge.sendCommand({
             command: "draw.pixels",
-            pixels: combinedPixels,
+            pixels: update.pixels,
             mode: drawingMode
           });
         }

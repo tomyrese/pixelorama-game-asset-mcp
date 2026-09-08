@@ -37,4 +37,42 @@ describe("Knight Asset Spec & Planning", () => {
       }
     }
   });
+
+  it("plans all 8 animation suites for cozy knight with 74 total frames", () => {
+    const spec = createCharacterSpec({
+      id: "player_knight",
+      name: "Cozy Knight",
+      width: 32,
+      height: 32,
+      animations: [
+        "idle",
+        "walk",
+        "harvest",
+        "mine",
+        "chop",
+        "attack",
+        "skill",
+        "interact"
+      ],
+      directions: ["down", "left", "right", "up"]
+    });
+
+    expect(spec.animations.length).toBe(14);
+    const totalFrames = spec.animations.reduce((sum, a) => sum + a.frameCount, 0);
+    expect(totalFrames).toBe(74);
+
+    const artDirection = resolveArtDirection("cozy_farm_32");
+    const animPlans = planAnimationSequences(spec, artDirection);
+    expect(animPlans.length).toBe(14);
+
+    for (const anim of animPlans) {
+      expect(anim.keyframes.length).toBe(anim.frameCount);
+      for (const kf of anim.keyframes) {
+        expect(kf.layerUpdates.length).toBe(3);
+        for (const update of kf.layerUpdates) {
+          expect(update.pixels.length).toBeGreaterThan(0);
+        }
+      }
+    }
+  });
 });

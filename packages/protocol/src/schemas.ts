@@ -125,6 +125,11 @@ export const BridgeCommandSchema = z.discriminatedUnion("command", [
     frameIndex: z.number().int()
   }),
   z.object({
+    command: z.literal("cel.clear"),
+    frameIndex: z.number().int().optional(),
+    layerIndex: z.number().int().optional()
+  }),
+  z.object({
     command: z.literal("draw.pixels"),
     pixels: z.array(PixelTupleSchema),
     mode: DrawingModeSchema.default("live")

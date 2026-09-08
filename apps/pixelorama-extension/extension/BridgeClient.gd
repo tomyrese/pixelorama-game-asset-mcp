@@ -167,6 +167,12 @@ func _dispatch_command(req_id: String, cmd_name: String, cmd_data: Dictionary) -
 			controller.erase_pixels(pixels)
 			_send_success(req_id, {"erased": true})
 			
+		"cel.clear":
+			var fidx = int(cmd_data.get("frameIndex", -1))
+			var lidx = int(cmd_data.get("layerIndex", -1))
+			controller.clear_cel(fidx, lidx)
+			_send_success(req_id, {"cleared": true})
+			
 		"palette.create":
 			var pname = str(cmd_data.get("name", "palette"))
 			var colors = cmd_data.get("colors", [])

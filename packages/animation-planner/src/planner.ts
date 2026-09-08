@@ -3,7 +3,16 @@ import { ArtDirectionSpec } from "@pixelorama/art-direction";
 import { PixelRun } from "@pixelorama/shared";
 import { runsToPixelTuples } from "@pixelorama/pixel-art-planner";
 import { AnimationSequencePlan, AnimationKeyframe } from "./types.js";
-import { getKnightIdleKeyframes, getKnightWalkKeyframes } from "./knight.js";
+import {
+  getKnightIdleKeyframes,
+  getKnightWalkKeyframes,
+  getKnightHarvestKeyframes,
+  getKnightMineKeyframes,
+  getKnightChopKeyframes,
+  getKnightAttackKeyframes,
+  getKnightSkillKeyframes,
+  getKnightInteractKeyframes
+} from "./knight.js";
 
 export function planAnimationSequences(
   spec: AssetSpec,
@@ -29,6 +38,18 @@ export function planAnimationSequences(
         keyframes.push(...getKnightIdleKeyframes(dir, anim.startFrame, anim.fps));
       } else if (anim.name.startsWith("walk")) {
         keyframes.push(...getKnightWalkKeyframes(dir, anim.startFrame, anim.fps));
+      } else if (anim.name.startsWith("harvest")) {
+        keyframes.push(...getKnightHarvestKeyframes(anim.startFrame, anim.fps));
+      } else if (anim.name.startsWith("mine")) {
+        keyframes.push(...getKnightMineKeyframes(anim.startFrame, anim.fps));
+      } else if (anim.name.startsWith("chop")) {
+        keyframes.push(...getKnightChopKeyframes(anim.startFrame, anim.fps));
+      } else if (anim.name.startsWith("attack")) {
+        keyframes.push(...getKnightAttackKeyframes(anim.startFrame, anim.fps));
+      } else if (anim.name.startsWith("skill")) {
+        keyframes.push(...getKnightSkillKeyframes(anim.startFrame, anim.fps));
+      } else if (anim.name.startsWith("interact")) {
+        keyframes.push(...getKnightInteractKeyframes(anim.startFrame, anim.fps));
       }
     } else if (anim.name.startsWith("idle")) {
       for (let i = 0; i < anim.frameCount; i++) {

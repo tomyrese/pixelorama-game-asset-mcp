@@ -1,6 +1,6 @@
 import { PixelRun, PixelTuple } from "@pixelorama/shared";
 
-export type KeyframePoseType = "contact" | "down" | "passing" | "up" | "anticipation" | "active" | "recovery";
+export type KeyframePoseType = "contact" | "down" | "passing" | "up" | "anticipation" | "active" | "recovery" | "action";
 
 export interface LayerFrameDelta {
   layerIndex: number;

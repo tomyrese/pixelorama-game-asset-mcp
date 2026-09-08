@@ -21,17 +21,18 @@ func get_current_project():
 func create_project(proj_name: String, width: int, height: int, fill_color: Color = Color(0, 0, 0, 0)) -> Dictionary:
 	var g = get_global()
 	var da = get_node_or_null("/root/DrawingAlgos")
-	if g and g.current_project and g.current_project.is_empty():
+	if g and g.current_project:
 		var p = g.current_project
 		p.name = proj_name
+		p.fill_color = fill_color
 		if da:
 			da.resize_canvas(width, height, 0, 0)
-		p.fill_color = fill_color
+		for f in range(p.frames.size()):
+			for l in range(p.layers.size()):
+				clear_cel(f, l)
 		return {"name": p.name, "width": p.size.x, "height": p.size.y}
 	elif api and api.project:
 		var p = api.project.new_project([], proj_name, Vector2(width, height), fill_color)
-		if g and g.tabs:
-			g.tabs.current_tab = g.tabs.get_tab_count() - 1
 		return {"name": p.name, "width": p.size.x, "height": p.size.y}
 	return {}
 
@@ -214,6 +215,24 @@ func erase_pixels(pixels: Array) -> void:
 		if px >= 0 and px < w and py >= 0 and py < h:
 			img.set_pixel(px, py, Color(0, 0, 0, 0))
 	commit_canvas_changes()
+
+func clear_cel(frame_index: int = -1, layer_index: int = -1) -> void:
+	var proj = get_current_project()
+	if not proj:
+		return
+	var fi = proj.current_frame if frame_index < 0 else frame_index
+	var li = proj.current_layer if layer_index < 0 else layer_index
+	if fi >= 0 and fi < proj.frames.size() and li >= 0 and li < proj.layers.size():
+		var cel = proj.frames[fi].cels[li]
+		if cel and cel.has_method("get_image"):
+			var img = cel.get_image()
+			if img:
+				img.fill(Color(0, 0, 0, 0))
+				if cel.has_method("update_texture"):
+					cel.update_texture()
+	var g = get_global()
+	if g and g.canvas:
+		g.canvas.queue_redraw()
 
 func create_palette(name: String, colors: Array, is_global: bool = false) -> void:
 	if api and api.palette:

@@ -41,12 +41,22 @@ export async function runCreateKnight(outputDir?: string): Promise<void> {
     name: "Cozy Knight",
     width: 32,
     height: 32,
-    animations: ["idle", "walk"],
+    animations: [
+      "idle",
+      "walk",
+      "harvest",
+      "mine",
+      "chop",
+      "attack",
+      "skill",
+      "interact"
+    ],
     directions: ["down", "left", "right", "up"]
   });
 
   const artDirection = resolveArtDirection("cozy_farm_32");
-  process.stdout.write(`[3/8] Asset Spec prepared: ${spec.name} (${spec.width}x${spec.height}), 4 directions, 40 animation frames\n`);
+  const totalFrames = spec.animations.reduce((sum, a) => sum + a.frameCount, 0);
+  process.stdout.write(`[3/8] Asset Spec prepared: ${spec.name} (${spec.width}x${spec.height}), ${spec.animations.length} animations, ${totalFrames} animation frames\n`);
 
   process.stdout.write("[4/8] Executing live visible drawing, keyframe construction & tags...\n");
   const result = await runAssetCreationWorkflow(server, {

@@ -24,18 +24,32 @@ export function createCharacterSpec(params: {
   let currentFrame = 0;
 
   for (const animName of animNames) {
-    for (const dir of directions) {
-      const frameCount = animName === "idle" ? 4 : 6;
+    if (["harvest", "mine", "chop", "attack", "skill", "interact"].includes(animName)) {
+      const frameCount = animName === "interact" ? 4 : 6;
       animations.push({
-        name: `${animName}_${dir}`,
-        direction: dir,
+        name: animName,
+        direction: "down",
         startFrame: currentFrame,
         frameCount,
-        fps: animName === "idle" ? 6 : 8,
-        loop: true,
+        fps: 8,
+        loop: false,
         events: []
       });
       currentFrame += frameCount;
+    } else {
+      for (const dir of directions) {
+        const frameCount = animName === "idle" ? 4 : 6;
+        animations.push({
+          name: `${animName}_${dir}`,
+          direction: dir,
+          startFrame: currentFrame,
+          frameCount,
+          fps: animName === "idle" ? 6 : 8,
+          loop: true,
+          events: []
+        });
+        currentFrame += frameCount;
+      }
     }
   }
 
