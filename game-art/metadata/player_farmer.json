@@ -1,0 +1,486 @@
+{
+  "id": "player_farmer",
+  "name": "Fantasy Farmer",
+  "type": "character",
+  "frameWidth": 32,
+  "frameHeight": 32,
+  "sheetWidth": 256,
+  "sheetHeight": 160,
+  "columns": 8,
+  "rows": 5,
+  "anchor": {
+    "x": 0.5,
+    "y": 1
+  },
+  "pivot": {
+    "x": 16,
+    "y": 32
+  },
+  "animations": [
+    {
+      "name": "idle_down",
+      "direction": "down",
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "frameIndex": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 1,
+          "rect": {
+            "x": 32,
+            "y": 0,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 2,
+          "rect": {
+            "x": 64,
+            "y": 0,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 3,
+          "rect": {
+            "x": 96,
+            "y": 0,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        }
+      ]
+    },
+    {
+      "name": "idle_left",
+      "direction": "left",
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "frameIndex": 4,
+          "rect": {
+            "x": 128,
+            "y": 0,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 5,
+          "rect": {
+            "x": 160,
+            "y": 0,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 6,
+          "rect": {
+            "x": 192,
+            "y": 0,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 7,
+          "rect": {
+            "x": 224,
+            "y": 0,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        }
+      ]
+    },
+    {
+      "name": "idle_right",
+      "direction": "right",
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "frameIndex": 8,
+          "rect": {
+            "x": 0,
+            "y": 32,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 9,
+          "rect": {
+            "x": 32,
+            "y": 32,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 10,
+          "rect": {
+            "x": 64,
+            "y": 32,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 11,
+          "rect": {
+            "x": 96,
+            "y": 32,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        }
+      ]
+    },
+    {
+      "name": "idle_up",
+      "direction": "up",
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "frameIndex": 12,
+          "rect": {
+            "x": 128,
+            "y": 32,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 13,
+          "rect": {
+            "x": 160,
+            "y": 32,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 14,
+          "rect": {
+            "x": 192,
+            "y": 32,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        },
+        {
+          "frameIndex": 15,
+          "rect": {
+            "x": 224,
+            "y": 32,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.16666666666666666
+        }
+      ]
+    },
+    {
+      "name": "walk_down",
+      "direction": "down",
+      "fps": 8,
+      "loop": true,
+      "frames": [
+        {
+          "frameIndex": 16,
+          "rect": {
+            "x": 0,
+            "y": 64,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 17,
+          "rect": {
+            "x": 32,
+            "y": 64,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 18,
+          "rect": {
+            "x": 64,
+            "y": 64,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 19,
+          "rect": {
+            "x": 96,
+            "y": 64,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 20,
+          "rect": {
+            "x": 128,
+            "y": 64,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 21,
+          "rect": {
+            "x": 160,
+            "y": 64,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        }
+      ]
+    },
+    {
+      "name": "walk_left",
+      "direction": "left",
+      "fps": 8,
+      "loop": true,
+      "frames": [
+        {
+          "frameIndex": 22,
+          "rect": {
+            "x": 192,
+            "y": 64,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 23,
+          "rect": {
+            "x": 224,
+            "y": 64,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 24,
+          "rect": {
+            "x": 0,
+            "y": 96,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 25,
+          "rect": {
+            "x": 32,
+            "y": 96,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 26,
+          "rect": {
+            "x": 64,
+            "y": 96,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 27,
+          "rect": {
+            "x": 96,
+            "y": 96,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        }
+      ]
+    },
+    {
+      "name": "walk_right",
+      "direction": "right",
+      "fps": 8,
+      "loop": true,
+      "frames": [
+        {
+          "frameIndex": 28,
+          "rect": {
+            "x": 128,
+            "y": 96,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 29,
+          "rect": {
+            "x": 160,
+            "y": 96,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 30,
+          "rect": {
+            "x": 192,
+            "y": 96,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 31,
+          "rect": {
+            "x": 224,
+            "y": 96,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 32,
+          "rect": {
+            "x": 0,
+            "y": 128,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 33,
+          "rect": {
+            "x": 32,
+            "y": 128,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        }
+      ]
+    },
+    {
+      "name": "walk_up",
+      "direction": "up",
+      "fps": 8,
+      "loop": true,
+      "frames": [
+        {
+          "frameIndex": 34,
+          "rect": {
+            "x": 64,
+            "y": 128,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 35,
+          "rect": {
+            "x": 96,
+            "y": 128,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 36,
+          "rect": {
+            "x": 128,
+            "y": 128,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 37,
+          "rect": {
+            "x": 160,
+            "y": 128,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 38,
+          "rect": {
+            "x": 192,
+            "y": 128,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        },
+        {
+          "frameIndex": 39,
+          "rect": {
+            "x": 224,
+            "y": 128,
+            "width": 32,
+            "height": 32
+          },
+          "duration": 0.125
+        }
+      ]
+    }
+  ],
+  "exportedAt": "2026-09-08T05:43:15.981Z"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@pixelorama/ui-planner",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@pixelorama/shared": "workspace:*",
+    "@pixelorama/art-direction": "workspace:*",
+    "@pixelorama/asset-spec": "workspace:*",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

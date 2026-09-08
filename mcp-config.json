@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "pixelorama-game-asset-mcp": {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "apps/mcp-server/dist/index.js"
+      ]
+    }
+  }
+}

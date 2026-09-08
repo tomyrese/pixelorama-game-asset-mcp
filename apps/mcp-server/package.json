@@ -1,0 +1,34 @@
+{
+  "name": "@pixelorama/mcp-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "pixelorama-mcp-server": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@pixelorama/shared": "workspace:*",
+    "@pixelorama/protocol": "workspace:*",
+    "@pixelorama/art-direction": "workspace:*",
+    "@pixelorama/asset-spec": "workspace:*",
+    "@pixelorama/pixelorama-bridge": "workspace:*",
+    "@pixelorama/pixel-art-planner": "workspace:*",
+    "@pixelorama/animation-planner": "workspace:*",
+    "@pixelorama/ui-planner": "workspace:*",
+    "@pixelorama/project-inspector": "workspace:*",
+    "@pixelorama/validation-engine": "workspace:*",
+    "@pixelorama/export-manager": "workspace:*",
+    "@pixelorama/asset-manifest": "workspace:*",
+    "@pixelorama/workflow-engine": "workspace:*",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

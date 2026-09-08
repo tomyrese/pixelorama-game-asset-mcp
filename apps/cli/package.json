@@ -1,0 +1,30 @@
+{
+  "name": "pixelorama-mcp-cli",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "pixelorama-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@pixelorama/shared": "workspace:*",
+    "@pixelorama/protocol": "workspace:*",
+    "@pixelorama/pixelorama-bridge": "workspace:*",
+    "@pixelorama/client-config": "workspace:*",
+    "@pixelorama/art-direction": "workspace:*",
+    "@pixelorama/asset-spec": "workspace:*",
+    "@pixelorama/pixel-art-planner": "workspace:*",
+    "@pixelorama/animation-planner": "workspace:*",
+    "@pixelorama/validation-engine": "workspace:*",
+    "@pixelorama/export-manager": "workspace:*",
+    "@pixelorama/asset-manifest": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

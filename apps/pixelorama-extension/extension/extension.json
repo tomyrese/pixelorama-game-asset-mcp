@@ -1,0 +1,12 @@
+{
+  "name": "ai_game_asset_studio",
+  "display_name": "AI Game Asset Studio",
+  "description": "MCP Bridge and AI Game Asset Studio for Pixelorama",
+  "author": "Antigravity",
+  "version": 1.0,
+  "supported_api_versions": [9, 8],
+  "license": "MIT",
+  "nodes": [
+    "Main.tscn"
+  ]
+}

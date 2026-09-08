@@ -1,0 +1,250 @@
+[
+  {
+    "id": "ex_01_farmer_girl",
+    "category": "character",
+    "title": "Female Farmer Character",
+    "prompt": "Create a 32x32 female farmer character for a cozy farming RPG. Top-down 4-direction view with warm colors, straw hat, denim overalls, and boots. Include idle and walk animations.",
+    "spec": {
+      "type": "character",
+      "width": 32,
+      "height": 32,
+      "preset": "cozy_farm_32",
+      "animations": ["idle", "walk"]
+    }
+  },
+  {
+    "id": "ex_02_village_blacksmith",
+    "category": "NPC",
+    "title": "Village Blacksmith NPC",
+    "prompt": "Create a 32x32 burly blacksmith NPC wearing a leather apron with an anvil striking idle animation.",
+    "spec": {
+      "type": "character",
+      "width": 32,
+      "height": 32,
+      "preset": "cozy_farm_32",
+      "animations": ["idle", "hammer"]
+    }
+  },
+  {
+    "id": "ex_03_slime_enemy",
+    "category": "enemy",
+    "title": "Forest Green Slime",
+    "prompt": "Create a 24x24 bouncy green slime enemy with squish-and-stretch idle, hop movement, and splat hurt animation.",
+    "spec": {
+      "type": "character",
+      "width": 24,
+      "height": 24,
+      "preset": "bright_adventure",
+      "animations": ["idle", "hop", "hurt"]
+    }
+  },
+  {
+    "id": "ex_04_forest_guardian_boss",
+    "category": "boss",
+    "title": "Forest Guardian Ancient Treant",
+    "prompt": "Create a 128x128 ancient tree creature boss with root slams, leaf storm telegraphs, hurt, and enrage phase 2 variants.",
+    "spec": {
+      "type": "character",
+      "width": 128,
+      "height": 128,
+      "preset": "dark_fantasy",
+      "animations": ["idle", "slam", "hurt", "death"]
+    }
+  },
+  {
+    "id": "ex_05_iron_sword",
+    "category": "weapon",
+    "title": "Iron Broadsword",
+    "prompt": "Create a 32x32 iron broadsword inventory icon and equipped sprite with clean metallic edge highlights.",
+    "spec": {
+      "type": "item",
+      "width": 32,
+      "height": 32,
+      "preset": "topdown_rpg"
+    }
+  },
+  {
+    "id": "ex_06_watering_can",
+    "category": "tool",
+    "title": "Copper Watering Can",
+    "prompt": "Create a 32x32 copper watering can tool icon with water droplet highlight.",
+    "spec": {
+      "type": "item",
+      "width": 32,
+      "height": 32,
+      "preset": "cozy_farm_32"
+    }
+  },
+  {
+    "id": "ex_07_healing_potion",
+    "category": "item",
+    "title": "Ruby Health Elixir",
+    "prompt": "Create a 24x24 glass flask filled with glowing red ruby health elixir.",
+    "spec": {
+      "type": "item",
+      "width": 24,
+      "height": 24,
+      "preset": "bright_adventure"
+    }
+  },
+  {
+    "id": "ex_08_blacksmith_shop",
+    "category": "building",
+    "title": "Stone Forge Shop",
+    "prompt": "Create a 96x96 blacksmith shop with smoking stone chimney and wooden shingle roof.",
+    "spec": {
+      "type": "item",
+      "width": 96,
+      "height": 96,
+      "preset": "cozy_farm_32"
+    }
+  },
+  {
+    "id": "ex_09_ancient_oak_tree",
+    "category": "tree",
+    "title": "Lush Oak Tree",
+    "prompt": "Create a 64x80 lush canopy oak tree prop with clustered pixel foliage and warm cast shadow.",
+    "spec": {
+      "type": "item",
+      "width": 64,
+      "height": 80,
+      "preset": "cozy_farm_32"
+    }
+  },
+  {
+    "id": "ex_10_golden_wheat_crop",
+    "category": "crop",
+    "title": "Wheat Crop Growth Stages",
+    "prompt": "Create 4 growth stages of wheat crop from sprout to ripe golden harvest, 32x32 each.",
+    "spec": {
+      "type": "item",
+      "width": 32,
+      "height": 32,
+      "preset": "cozy_farm_32"
+    }
+  },
+  {
+    "id": "ex_11_village_tileset",
+    "category": "tileset",
+    "title": "Village Grass and Soil Tileset",
+    "prompt": "Create a 32x32 autotile compatible terrain tileset including grass, tilled soil, cobblestone paths, and water edges.",
+    "spec": {
+      "type": "tileset",
+      "width": 128,
+      "height": 128,
+      "preset": "cozy_farm_32"
+    }
+  },
+  {
+    "id": "ex_12_forest_parallax_bg",
+    "category": "background",
+    "title": "3-Layer Deep Forest Parallax",
+    "prompt": "Create seamless horizontal parallax background layers: distant misty mountains, mid forest silhouettes, and near tree trunks.",
+    "spec": {
+      "type": "item",
+      "width": 320,
+      "height": 180,
+      "preset": "side_scroll_fantasy"
+    }
+  },
+  {
+    "id": "ex_13_nine_slice_dialog",
+    "category": "UI",
+    "title": "RPG Wooden Dialog Box",
+    "prompt": "Create a scalable 9-slice wooden dialogue panel with decorative gold corner studs.",
+    "spec": {
+      "type": "item",
+      "width": 48,
+      "height": 48,
+      "preset": "cozy_farm_32"
+    }
+  },
+  {
+    "id": "ex_14_inventory_slot_kit",
+    "category": "inventory",
+    "title": "Inventory Slot Grid",
+    "prompt": "Create 32x32 inventory slots with normal, selected, locked, and hover states.",
+    "spec": {
+      "type": "item",
+      "width": 32,
+      "height": 32,
+      "preset": "minimal_pixel_ui"
+    }
+  },
+  {
+    "id": "ex_15_health_mana_hud",
+    "category": "HUD",
+    "title": "Hero Status Bars",
+    "prompt": "Create ornate health, mana, and stamina bars with ornamental dragon bracket borders.",
+    "spec": {
+      "type": "item",
+      "width": 96,
+      "height": 16,
+      "preset": "topdown_rpg"
+    }
+  },
+  {
+    "id": "ex_16_gold_coin_icon",
+    "category": "icon",
+    "title": "Spinning Gold Coin",
+    "prompt": "Create a 16x16 rotating gold coin icon with a 4-frame shining spin loop.",
+    "spec": {
+      "type": "character",
+      "width": 16,
+      "height": 16,
+      "preset": "bright_adventure",
+      "animations": ["spin"]
+    }
+  },
+  {
+    "id": "ex_17_fireball_skill_icon",
+    "category": "skill",
+    "title": "Flame Burst Skill Icon",
+    "prompt": "Create a 24x24 skill tree icon showing an erupting fireball with dark stone beveled border.",
+    "spec": {
+      "type": "item",
+      "width": 24,
+      "height": 24,
+      "preset": "dark_fantasy"
+    }
+  },
+  {
+    "id": "ex_18_slash_vfx",
+    "category": "VFX",
+    "title": "Curved Sword Arc Slash",
+    "prompt": "Create a 48x48 crescent blade slash VFX animation: anticipation streak, peak flash, and dissipation particles.",
+    "spec": {
+      "type": "character",
+      "width": 48,
+      "height": 48,
+      "preset": "topdown_rpg",
+      "animations": ["slash"]
+    }
+  },
+  {
+    "id": "ex_19_magic_missile_projectile",
+    "category": "projectile",
+    "title": "Arcane Energy Missile",
+    "prompt": "Create a 16x16 pulsating arcane missile with trailing stardust particles.",
+    "spec": {
+      "type": "character",
+      "width": 16,
+      "height": 16,
+      "preset": "side_scroll_fantasy",
+      "animations": ["fly"]
+    }
+  },
+  {
+    "id": "ex_20_forest_biome_pack",
+    "category": "full_asset_pack",
+    "title": "Forest Biome Complete Asset Pack",
+    "prompt": "Create a complete forest asset kit: grass tileset, 2 tree variants, berry bush, slime enemy, wooden chest, and coin icon.",
+    "spec": {
+      "type": "character",
+      "width": 32,
+      "height": 32,
+      "preset": "cozy_farm_32",
+      "animations": ["idle", "walk"]
+    }
+  }
+]
