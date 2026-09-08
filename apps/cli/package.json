@@ -22,7 +22,8 @@
     "@pixelorama/animation-planner": "workspace:*",
     "@pixelorama/validation-engine": "workspace:*",
     "@pixelorama/export-manager": "workspace:*",
-    "@pixelorama/asset-manifest": "workspace:*"
+    "@pixelorama/asset-manifest": "workspace:*",
+    "@pixelorama/workflow-engine": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.3"

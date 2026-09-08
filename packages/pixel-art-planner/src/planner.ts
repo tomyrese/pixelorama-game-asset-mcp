@@ -4,6 +4,14 @@ import { PixelRun } from "@pixelorama/shared";
 import { PixelArtPlan, StageDrawingBatch } from "./types.js";
 import { generateGroundShadowRuns, runsToPixelTuples } from "./silhouette.js";
 
+import {
+  getKnightGroundShadowRuns,
+  getKnightBodyRunsDown,
+  getKnightClothingRunsDown,
+  getKnightHelmetRunsDown,
+  KNIGHT_COLORS
+} from "./knight.js";
+
 export function planPixelArt(
   spec: AssetSpec,
   artDirection: ArtDirectionSpec
@@ -29,14 +37,18 @@ export function planPixelArt(
   const stages: StageDrawingBatch[] = [];
   const layers = spec.layers.map((l) => l.name);
 
+  const isKnight = spec.id.includes("knight") || spec.name.toLowerCase().includes("knight");
+
   if (spec.type === "character" || spec.type === "npc" || spec.type === "enemy") {
-    const shadowRuns = generateGroundShadowRuns(
-      Math.floor(width / 2),
-      height - 3,
-      Math.floor(width * 0.22),
-      2,
-      colorMap.shadow
-    );
+    const shadowRuns = isKnight
+      ? getKnightGroundShadowRuns()
+      : generateGroundShadowRuns(
+          Math.floor(width / 2),
+          height - 3,
+          Math.floor(width * 0.22),
+          2,
+          colorMap.shadow
+        );
 
     stages.push({
       stage: "shadow",
@@ -50,17 +62,19 @@ export function planPixelArt(
       primaryColor: colorMap.shadow
     });
 
-    const bodyRuns: PixelRun[] = [
-      { y: 8, xStart: 12, xEnd: 19, color: colorMap.skinBase },
-      { y: 9, xStart: 11, xEnd: 20, color: colorMap.skinBase },
-      { y: 10, xStart: 11, xEnd: 20, color: colorMap.skinBase },
-      { y: 11, xStart: 12, xEnd: 19, color: colorMap.skinBase },
-      { y: 12, xStart: 13, xEnd: 18, color: colorMap.skinShadow },
-      { y: 17, xStart: 9, xEnd: 11, color: colorMap.skinBase },
-      { y: 18, xStart: 9, xEnd: 11, color: colorMap.skinBase },
-      { y: 17, xStart: 20, xEnd: 22, color: colorMap.skinBase },
-      { y: 18, xStart: 20, xEnd: 22, color: colorMap.skinBase }
-    ];
+    const bodyRuns: PixelRun[] = isKnight
+      ? getKnightBodyRunsDown()
+      : [
+          { y: 8, xStart: 12, xEnd: 19, color: colorMap.skinBase },
+          { y: 9, xStart: 11, xEnd: 20, color: colorMap.skinBase },
+          { y: 10, xStart: 11, xEnd: 20, color: colorMap.skinBase },
+          { y: 11, xStart: 12, xEnd: 19, color: colorMap.skinBase },
+          { y: 12, xStart: 13, xEnd: 18, color: colorMap.skinShadow },
+          { y: 17, xStart: 9, xEnd: 11, color: colorMap.skinBase },
+          { y: 18, xStart: 9, xEnd: 11, color: colorMap.skinBase },
+          { y: 17, xStart: 20, xEnd: 22, color: colorMap.skinBase },
+          { y: 18, xStart: 20, xEnd: 22, color: colorMap.skinBase }
+        ];
 
     stages.push({
       stage: "base_color",
@@ -71,31 +85,33 @@ export function planPixelArt(
       pixels: runsToPixelTuples(bodyRuns),
       cursorPosition: { x: 15, y: 10 },
       tool: "Pencil",
-      primaryColor: colorMap.skinBase
+      primaryColor: isKnight ? KNIGHT_COLORS.steelMid : colorMap.skinBase
     });
 
-    const clothingRuns: PixelRun[] = [
-      { y: 13, xStart: 12, xEnd: 19, color: colorMap.clothLight },
-      { y: 14, xStart: 11, xEnd: 20, color: colorMap.clothBase },
-      { y: 15, xStart: 11, xEnd: 20, color: colorMap.clothBase },
-      { y: 16, xStart: 12, xEnd: 19, color: colorMap.clothBase },
-      { y: 17, xStart: 12, xEnd: 19, color: colorMap.clothShadow },
-      { y: 18, xStart: 12, xEnd: 19, color: colorMap.clothBase },
-      { y: 19, xStart: 12, xEnd: 19, color: colorMap.clothBase },
-      { y: 20, xStart: 12, xEnd: 19, color: colorMap.clothBase },
-      { y: 21, xStart: 12, xEnd: 19, color: colorMap.clothBase },
-      { y: 22, xStart: 12, xEnd: 19, color: colorMap.clothShadow },
-      { y: 23, xStart: 12, xEnd: 15, color: colorMap.clothBase },
-      { y: 23, xStart: 16, xEnd: 19, color: colorMap.clothShadow },
-      { y: 24, xStart: 12, xEnd: 15, color: colorMap.clothBase },
-      { y: 24, xStart: 16, xEnd: 19, color: colorMap.clothShadow },
-      { y: 25, xStart: 12, xEnd: 15, color: colorMap.clothBase },
-      { y: 25, xStart: 16, xEnd: 19, color: colorMap.clothShadow },
-      { y: 26, xStart: 11, xEnd: 15, color: colorMap.outline },
-      { y: 26, xStart: 16, xEnd: 20, color: colorMap.outline },
-      { y: 27, xStart: 11, xEnd: 15, color: colorMap.outline },
-      { y: 27, xStart: 16, xEnd: 20, color: colorMap.outline }
-    ];
+    const clothingRuns: PixelRun[] = isKnight
+      ? getKnightClothingRunsDown()
+      : [
+          { y: 13, xStart: 12, xEnd: 19, color: colorMap.clothLight },
+          { y: 14, xStart: 11, xEnd: 20, color: colorMap.clothBase },
+          { y: 15, xStart: 11, xEnd: 20, color: colorMap.clothBase },
+          { y: 16, xStart: 12, xEnd: 19, color: colorMap.clothBase },
+          { y: 17, xStart: 12, xEnd: 19, color: colorMap.clothShadow },
+          { y: 18, xStart: 12, xEnd: 19, color: colorMap.clothBase },
+          { y: 19, xStart: 12, xEnd: 19, color: colorMap.clothBase },
+          { y: 20, xStart: 12, xEnd: 19, color: colorMap.clothBase },
+          { y: 21, xStart: 12, xEnd: 19, color: colorMap.clothBase },
+          { y: 22, xStart: 12, xEnd: 19, color: colorMap.clothShadow },
+          { y: 23, xStart: 12, xEnd: 15, color: colorMap.clothBase },
+          { y: 23, xStart: 16, xEnd: 19, color: colorMap.clothShadow },
+          { y: 24, xStart: 12, xEnd: 15, color: colorMap.clothBase },
+          { y: 24, xStart: 16, xEnd: 19, color: colorMap.clothShadow },
+          { y: 25, xStart: 12, xEnd: 15, color: colorMap.clothBase },
+          { y: 25, xStart: 16, xEnd: 19, color: colorMap.clothShadow },
+          { y: 26, xStart: 11, xEnd: 15, color: colorMap.outline },
+          { y: 26, xStart: 16, xEnd: 20, color: colorMap.outline },
+          { y: 27, xStart: 11, xEnd: 15, color: colorMap.outline },
+          { y: 27, xStart: 16, xEnd: 20, color: colorMap.outline }
+        ];
 
     stages.push({
       stage: "shading",
@@ -106,20 +122,22 @@ export function planPixelArt(
       pixels: runsToPixelTuples(clothingRuns),
       cursorPosition: { x: 15, y: 18 },
       tool: "Pencil",
-      primaryColor: colorMap.clothBase
+      primaryColor: isKnight ? KNIGHT_COLORS.goldLight : colorMap.clothBase
     });
 
-    const hairHatRuns: PixelRun[] = [
-      { y: 3, xStart: 13, xEnd: 18, color: colorMap.accent },
-      { y: 4, xStart: 12, xEnd: 19, color: colorMap.accent },
-      { y: 5, xStart: 12, xEnd: 19, color: colorMap.hairBase },
-      { y: 6, xStart: 8, xEnd: 23, color: colorMap.accent },
-      { y: 7, xStart: 7, xEnd: 24, color: colorMap.accent },
-      { y: 8, xStart: 10, xEnd: 12, color: colorMap.hairBase },
-      { y: 8, xStart: 19, xEnd: 21, color: colorMap.hairBase },
-      { y: 9, xStart: 10, xEnd: 11, color: colorMap.hairBase },
-      { y: 9, xStart: 20, xEnd: 21, color: colorMap.hairBase }
-    ];
+    const hairHatRuns: PixelRun[] = isKnight
+      ? getKnightHelmetRunsDown()
+      : [
+          { y: 3, xStart: 13, xEnd: 18, color: colorMap.accent },
+          { y: 4, xStart: 12, xEnd: 19, color: colorMap.accent },
+          { y: 5, xStart: 12, xEnd: 19, color: colorMap.hairBase },
+          { y: 6, xStart: 8, xEnd: 23, color: colorMap.accent },
+          { y: 7, xStart: 7, xEnd: 24, color: colorMap.accent },
+          { y: 8, xStart: 10, xEnd: 12, color: colorMap.hairBase },
+          { y: 8, xStart: 19, xEnd: 21, color: colorMap.hairBase },
+          { y: 9, xStart: 10, xEnd: 11, color: colorMap.hairBase },
+          { y: 9, xStart: 20, xEnd: 21, color: colorMap.hairBase }
+        ];
 
     stages.push({
       stage: "detail",
@@ -130,7 +148,7 @@ export function planPixelArt(
       pixels: runsToPixelTuples(hairHatRuns),
       cursorPosition: { x: 15, y: 6 },
       tool: "Pencil",
-      primaryColor: colorMap.accent
+      primaryColor: isKnight ? KNIGHT_COLORS.crimsonMid : colorMap.accent
     });
   } else {
     const itemRuns: PixelRun[] = [

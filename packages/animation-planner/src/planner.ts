@@ -3,6 +3,7 @@ import { ArtDirectionSpec } from "@pixelorama/art-direction";
 import { PixelRun } from "@pixelorama/shared";
 import { runsToPixelTuples } from "@pixelorama/pixel-art-planner";
 import { AnimationSequencePlan, AnimationKeyframe } from "./types.js";
+import { getKnightIdleKeyframes, getKnightWalkKeyframes } from "./knight.js";
 
 export function planAnimationSequences(
   spec: AssetSpec,
@@ -10,6 +11,7 @@ export function planAnimationSequences(
 ): AnimationSequencePlan[] {
   const plans: AnimationSequencePlan[] = [];
   const palette = artDirection.palette;
+  const isKnight = spec.id.includes("knight") || spec.name.toLowerCase().includes("knight");
 
   const clothBase = palette.find((p) => p.role === "clothing" && p.name.includes("Mid"))?.hex ?? "#3e5d7d";
   const clothShadow = palette.find((p) => p.role === "clothing" && p.name.includes("Dark"))?.hex ?? "#233852";
@@ -20,8 +22,15 @@ export function planAnimationSequences(
 
   for (const anim of spec.animations) {
     const keyframes: AnimationKeyframe[] = [];
+    const dir = (anim.direction as "down" | "left" | "right" | "up") || "down";
 
-    if (anim.name.startsWith("idle")) {
+    if (isKnight) {
+      if (anim.name.startsWith("idle")) {
+        keyframes.push(...getKnightIdleKeyframes(dir, anim.startFrame, anim.fps));
+      } else if (anim.name.startsWith("walk")) {
+        keyframes.push(...getKnightWalkKeyframes(dir, anim.startFrame, anim.fps));
+      }
+    } else if (anim.name.startsWith("idle")) {
       for (let i = 0; i < anim.frameCount; i++) {
         const frameIndex = anim.startFrame + i;
         const breathY = (i === 1 || i === 2) ? -1 : 0;

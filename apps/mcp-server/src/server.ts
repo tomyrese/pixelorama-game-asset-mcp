@@ -452,9 +452,10 @@ export function createPixeloramaMcpServer(bridge: PixeloramaBridgeServer): McpSe
       preset: z.string().default("cozy_farm_32"),
       outputDirectory: z.string(),
       drawingMode: z.enum(["live", "fast", "instant"]).default("live"),
-      animations: z.array(z.string()).default(["idle", "walk"])
+      animations: z.array(z.string()).default(["idle", "walk"]),
+      directions: z.array(z.enum(["down", "left", "right", "up"])).default(["down", "left", "right", "up"])
     },
-    async ({ id, name, type, width, height, preset, outputDirectory, drawingMode, animations }) => {
+    async ({ id, name, type, width, height, preset, outputDirectory, drawingMode, animations, directions }) => {
       if (!isPixeloramaRunning()) {
         await launchPixelorama();
       }
@@ -470,7 +471,7 @@ export function createPixeloramaMcpServer(bridge: PixeloramaBridgeServer): McpSe
           width,
           height,
           animations,
-          directions: ["down"]
+          directions: directions ?? ["down", "left", "right", "up"]
         });
       } else if (type === "item") {
         spec = createItemSpec({ id, name, width, height });

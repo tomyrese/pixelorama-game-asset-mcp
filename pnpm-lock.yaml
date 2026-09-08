@@ -160,6 +160,9 @@ importers:
       '@pixelorama/validation-engine':
         specifier: workspace:*
         version: link:../../packages/validation-engine
+      '@pixelorama/workflow-engine':
+        specifier: workspace:*
+        version: link:../../packages/workflow-engine
     devDependencies:
       typescript:
         specifier: ^5.7.3

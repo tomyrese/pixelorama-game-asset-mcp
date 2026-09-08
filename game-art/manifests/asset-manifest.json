@@ -1,18 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "project": "Pixelorama Game Asset MCP",
-  "lastUpdated": "2026-09-08T05:43:15.986Z",
+  "project": "Cozy Farming Knight",
+  "lastUpdated": "2026-09-08T06:13:51.752Z",
   "assets": {
-    "player_farmer": {
-      "id": "player_farmer",
-      "sourcePxo": "D:\\Code\\pixelorama-game-asset-mcp\\game-art\\source\\player_farmer.pxo",
+    "player_knight": {
+      "id": "player_knight",
+      "sourcePxo": "D:\\Code\\pixelorama-game-asset-mcp\\apps\\cli\\game-art\\source\\player_knight.pxo",
       "runtimeFiles": [
-        "D:\\Code\\pixelorama-game-asset-mcp\\game-art\\runtime\\player_farmer_sheet.png",
-        "D:\\Code\\pixelorama-game-asset-mcp\\game-art\\runtime\\player_farmer_frames.tres"
+        "D:\\Code\\pixelorama-game-asset-mcp\\apps\\cli\\game-art\\runtime\\player_knight_sheet.png",
+        "D:\\Code\\pixelorama-game-asset-mcp\\apps\\cli\\game-art\\runtime\\player_knight_frames.tres"
       ],
       "metadata": {
-        "id": "player_farmer",
-        "name": "Fantasy Farmer",
+        "id": "player_knight",
+        "name": "Cozy Knight",
         "type": "character",
         "frameWidth": 32,
         "frameHeight": 32,
@@ -494,7 +494,7 @@
             ]
           }
         ],
-        "exportedAt": "2026-09-08T05:43:15.981Z"
+        "exportedAt": "2026-09-08T06:13:51.749Z"
       },
       "validationStatus": "PASS",
       "version": 1

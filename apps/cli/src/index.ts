@@ -6,6 +6,7 @@ import { runInstallExtension } from "./commands/install-extension.js";
 import { runConfigure } from "./commands/configure.js";
 import { runStatus } from "./commands/status.js";
 import { runDemo } from "./commands/demo.js";
+import { runCreateKnight } from "./commands/create-knight.js";
 
 async function main() {
   const args = process.argv.slice(2);
@@ -30,6 +31,11 @@ async function main() {
 
     case "demo":
       await runDemo();
+      break;
+
+    case "create-knight":
+    case "knight":
+      await runCreateKnight(args[1]);
       break;
 
     case "start": {
