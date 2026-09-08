@@ -15,8 +15,19 @@ export async function runDemo(): Promise<void> {
   process.stdout.write("=========================================\n\n");
 
   const server = new PixeloramaBridgeServer({ port: 18814 });
-  await server.start();
-  process.stdout.write("[1/10] Bridge server started on ws://127.0.0.1:18814\n");
+  try {
+    await server.start();
+    process.stdout.write("[1/10] Bridge server started on ws://127.0.0.1:18814\n");
+  } catch (err: unknown) {
+    const error = err as { code?: string };
+    if (error?.code === "EADDRINUSE") {
+      process.stdout.write("\n[!] Port 18814 is currently in use by an active MCP Server (e.g. Antigravity IDE / Claude Desktop).\n");
+      process.stdout.write("    -> The MCP Server is ALREADY RUNNING and connected to Pixelorama.\n");
+      process.stdout.write("    -> You can directly ask your AI assistant in chat to create assets!\n\n");
+      return;
+    }
+    throw err;
+  }
 
   const running = await isPixeloramaRunning();
   if (!running) {
