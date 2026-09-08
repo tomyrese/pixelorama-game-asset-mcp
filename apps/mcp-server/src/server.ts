@@ -15,6 +15,7 @@ import {
 import { planPixelArt } from "@pixelorama/pixel-art-planner";
 import { inspectGameProject } from "@pixelorama/project-inspector";
 import { runAssetCreationWorkflow } from "@pixelorama/workflow-engine";
+import { PixelTuple } from "@pixelorama/shared";
 
 export function createPixeloramaMcpServer(bridge: PixeloramaBridgeServer): McpServer {
   const server = new McpServer({
@@ -254,21 +255,22 @@ export function createPixeloramaMcpServer(bridge: PixeloramaBridgeServer): McpSe
     "Draws a list of pixels with visible live execution in Pixelorama",
     {
       pixels: z.array(
-        z.tuple([
-          z.number().int(),
-          z.number().int(),
-          z.number().min(0).max(255),
-          z.number().min(0).max(255),
-          z.number().min(0).max(255),
-          z.number().min(0).max(255)
-        ])
+        z.object({
+          x: z.number().int(),
+          y: z.number().int(),
+          r: z.number().int().min(0).max(255),
+          g: z.number().int().min(0).max(255),
+          b: z.number().int().min(0).max(255),
+          a: z.number().int().min(0).max(255).default(255)
+        })
       ),
       mode: z.enum(["live", "fast", "instant"]).default("live")
     },
     async ({ pixels, mode }) => {
+      const pixelTuples: PixelTuple[] = pixels.map((p) => [p.x, p.y, p.r, p.g, p.b, p.a ?? 255]);
       const res = await bridge.sendCommand({
         command: "draw.pixels",
-        pixels,
+        pixels: pixelTuples,
         mode
       });
       return {
